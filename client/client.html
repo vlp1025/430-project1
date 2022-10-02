@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Note HTTP Server</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+
+  <script>
+
+
+    const handleResponse = async (response, parseResponse, obj) => {
+      const content = document.querySelector('#content');
+
+      switch (response.status) {
+        case 200:
+          content.innerHTML = `<b>Success</b>`;
+          break;
+        case 201:
+          content.innerHTML = `<b>Created</b>`;
+          break;
+        case 204:
+          content.innerHTML = `<b>Updated</b>`;
+          parseResponse = false;
+          break;
+        case 400:
+          content.innerHTML = `<b>Bad Request</b>`;
+          break;
+        case 404:
+          content.innerHTML = `<b>Not Found</b>`;
+          obj = true;
+          break;
+        default:
+          content.innerHTML = `Error code not implemented by client.`;
+          break;
+      }
+
+      if (parseResponse) {
+        const jsonResponse = await response.json();
+        if (obj) {
+          content.innerHTML += `<p>Message: ${jsonResponse.message}</p>`;
+        } else {
+          content.innerHTML += `<p>${JSON.stringify(jsonResponse.notes)}</p>`;
+        }
+      }
+
+    };
+
+
+    const get = async (noteForm) => {
+      const methodSelect = noteForm.querySelector('#methodSelect').value;
+      const url = noteForm.querySelector('#urlField').value;
+
+      let response = await fetch(url, {
+        method: methodSelect,
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        },
+      });
+
+      handleResponse(response, methodSelect !== 'head', false);
+    };
+
+
+    const post = async (nameForm) => {
+      const ageField = nameForm.querySelector('#ageField').value;
+      const nameMethod = nameForm.getAttribute('method').value;
+      const titleField = nameForm.querySelector('#titleField').value;
+      const nameField = nameForm.querySelector('#nameField').value;
+      const desField = nameForm.querySelector('#desField').value;
+      const startField = nameForm.querySelector('#startField').value;
+
+
+      let response = await fetch(`/addNote?name=${titleField}&importance=${ageField}&description=${desField}&start=${startField}&yourName=${nameField}`, {
+        method: nameMethod,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      });
+
+      handleResponse(response, true, true);
+    };
+
+
+    const init = () => {
+      const nameForm = document.querySelector('#nameForm');
+      const noteForm = document.querySelector('#noteForm');
+
+      const getNotes = (event) => {
+        event.preventDefault();
+        get(noteForm);
+      }
+
+      const postNotes = (event) => {
+        event.preventDefault();
+        post(nameForm);
+      }
+
+      nameForm.addEventListener('submit', postNotes);
+      noteForm.addEventListener('submit', getNotes);
+    }
+
+    window.onload = init;
+  </script>
+</head>
+
+<body>
+  <section id="top">
+    <h3>Note App</h3>
+    <form id="nameForm" action="/addNote" method="post">
+
+      <label for="title">Title: </label>
+      <input id="titleField" type="text" name="title" />
+
+      <br>
+
+      <label for="yourName">Your name: </label>
+      <input id="nameField" type="text" name="yourName" />
+
+      <br>
+
+      <label for="description">Description: </label>
+      <input id="desField" type="text" name="description" />
+
+      <br>
+
+      <label for="start">Start date:</label>
+      <input type="date" id="startField" name="start" value="2022-10-1" min="2022-10-1" max="2025-12-31">
+      <br>
+
+      <label for="importance">Importance: </label>
+      <input id="ageField" type="number" name="importance" min="0" max="10" step="1" />
+
+
+      <input type="submit" value="Add Note" />
+    </form>
+    <form id="noteForm" action="/getNotes" method="get">
+      <select id='urlField' hidden>
+        <option value='/getNotes'>/getNotes</option>
+        <option value='/notReal'>/notReal</option>
+      </select>
+      <select id="methodSelect" hidden>
+        <option value="get">GET</option>
+        <option value="head">HEAD</option>
+      </select>
+      <input type="submit" value="Get All Notes" />
+    </form>
+  </section>
+  <section id="content">
+  </section>
+</body>
+
+</html>
