@@ -13,13 +13,17 @@
 
       switch (response.status) {
         case 200:
+
+          if (Object.keys(obj).length === 0) {
+            content.innerHTML += `<p>The response was succesful but there are no notes to get</p>`;
+          }
           content.innerHTML = `<b>Success</b>`;
           break;
         case 201:
           content.innerHTML = `<b>Created</b>`;
           break;
         case 204:
-          content.innerHTML = `<b>Updated</b>`;
+          content.innerHTML = `<b>Updated the note</b>`;
           parseResponse = false;
           break;
         case 400:
@@ -36,11 +40,50 @@
 
       if (parseResponse) {
         const jsonResponse = await response.json();
+
+
+        // if(jsonResponse.notes === {}){
+        //   content.innerHTML += `<p>The response was succesful but there are no notes to get</p>`;
+        // }
+
+
+
+        if (jsonResponse.notes) {
+          // console.log(Object.keys(obj));
+          // if (Object.keys(obj).length === 0) {
+          //   content.innerHTML += `<p>The response was succesful but there are no notes to get</p>`;
+          // }
+          console.log(Object.keys(jsonResponse.notes));
+
+          if (Object.keys(jsonResponse.notes).length == 0) {
+            content.innerHTML += `<p>The response was succesful but there are no notes to get</p>`;
+          }
+
+
+          Object.keys(jsonResponse.notes).forEach(key => {
+            //console.log(jsonResponse);
+            const note = jsonResponse.notes[key];
+            `<div>`
+            content.innerHTML += `<h1>${key}</h1>`;
+            content.innerHTML += `${note.description} `;
+            content.innerHTML += `${note.importance} `;
+            content.innerHTML += `${note.yourName} `;
+            content.innerHTML += ` ${note.start}`;
+            `<div>`
+          });
+        }
+
+
+        // if (!jsonResponse.notes) {
+        //   content.innerHTML += `<p>The response was succesful but there are no notes to</p>`;
+        // }
+
         if (obj) {
           content.innerHTML += `<p>Message: ${jsonResponse.message}</p>`;
-        } else {
-          content.innerHTML += `<p>${JSON.stringify(jsonResponse.notes)}</p>`;
         }
+        // } else {
+        //   content.innerHTML += `<p>${JSON.stringify(jsonResponse.notes)}</p>`;
+        // }
       }
 
     };
@@ -65,10 +108,12 @@
     const post = async (nameForm) => {
       const ageField = nameForm.querySelector('#ageField').value;
       const nameMethod = nameForm.getAttribute('method').value;
+      const nameAction = nameForm.getAttribute('actiob');
       const titleField = nameForm.querySelector('#titleField').value;
       const nameField = nameForm.querySelector('#nameField').value;
       const desField = nameForm.querySelector('#desField').value;
       const startField = nameForm.querySelector('#startField').value;
+      const formData = `name=${titleField}&importance=${ageField}&description=${desField}&start=${startField}&yourName=${nameField}`;
 
 
       let response = await fetch(`/addNote?name=${titleField}&importance=${ageField}&description=${desField}&start=${startField}&yourName=${nameField}`, {
@@ -114,21 +159,18 @@
       <input id="titleField" type="text" name="title" />
 
       <br>
-
       <label for="yourName">Your name: </label>
       <input id="nameField" type="text" name="yourName" />
 
       <br>
-
       <label for="description">Description: </label>
       <input id="desField" type="text" name="description" />
 
       <br>
-
       <label for="start">Start date:</label>
       <input type="date" id="startField" name="start" value="2022-10-1" min="2022-10-1" max="2025-12-31">
-      <br>
 
+      <br>
       <label for="importance">Importance: </label>
       <input id="ageField" type="number" name="importance" min="0" max="10" step="1" />
 

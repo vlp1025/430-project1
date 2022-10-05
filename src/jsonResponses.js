@@ -23,7 +23,9 @@ const addNote = (request, response, body) => {
     message: 'Message: All attributes are required,',
   };
 
-  if (!body.importance || !body.name) {
+  // !body.importance || !body.title|| !body.start || !body.yourName|| !body.description
+
+  if (!body.importance || !body.name || !body.description || !body.start || !body.yourName) {
     responseJSON.id = 'addMissingParams';
     return respondJSON(request, response, 400, responseJSON);
   }
