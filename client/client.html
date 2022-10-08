@@ -69,7 +69,8 @@
             content.innerHTML += `${note.importance} `;
             content.innerHTML += `${note.yourName} `;
             content.innerHTML += ` ${note.start}`;
-            `<div>`
+            `<br>`
+            `</div>`
           });
         }
 
@@ -147,6 +148,7 @@
     }
 
     window.onload = init;
+
   </script>
 
 
@@ -180,6 +182,20 @@
 		@-webkit-keyframes slide-in-bottom{0%{-webkit-transform:translateY(1000px);transform:translateY(1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@keyframes slide-in-bottom{0%{-webkit-transform:translateY(1000px);transform:translateY(1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}
 		@-webkit-keyframes bounce-top{0%{-webkit-transform:translateY(-45px);transform:translateY(-45px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:1}24%{opacity:1}40%{-webkit-transform:translateY(-24px);transform:translateY(-24px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}65%{-webkit-transform:translateY(-12px);transform:translateY(-12px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}82%{-webkit-transform:translateY(-6px);transform:translateY(-6px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}93%{-webkit-transform:translateY(-4px);transform:translateY(-4px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}25%,55%,75%,87%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}100%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;opacity:1}}@keyframes bounce-top{0%{-webkit-transform:translateY(-45px);transform:translateY(-45px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:1}24%{opacity:1}40%{-webkit-transform:translateY(-24px);transform:translateY(-24px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}65%{-webkit-transform:translateY(-12px);transform:translateY(-12px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}82%{-webkit-transform:translateY(-6px);transform:translateY(-6px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}93%{-webkit-transform:translateY(-4px);transform:translateY(-4px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}25%,55%,75%,87%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}100%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;opacity:1}}
 		@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
+
+
+
+    #content {
+      text-align: center;
+      color: blueviolet;
+      font-size: 20px;
+      margin: auto;
+     width: 50%;
+    border: 3px solid blue;
+    padding: 10px;
+      
+    }
+
 				
 	</style>
 </head>
@@ -197,7 +213,7 @@
         
       <div class="w-full flex items-center justify-between">
         <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="#"> 
-           <svg class="h-8 fill-current text-indigo-600 pr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"/></svg> APP
+           <svg class="h-8 fill-current text-indigo-600 pr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"/></svg> Take Your Notes!
         </a>
       </div>
   
@@ -227,7 +243,7 @@
 
             <div>
               <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Description</label>
-              <input type="text" id="desField" name="description" class="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+              <input type="text" id="desField" name="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
 
 
@@ -262,41 +278,8 @@
           </form>
           </div>
 
-
-          <!-- <form id="nameForm" action="/addNote" method="post">
-       
-            <label for="title">Title: </label>
-            <input id="titleField" type="text" name="title" />
-       
-            <br>
-       
-            <label for="yourName">Your name: </label>
-            <input id="nameField" type="text" name="yourName" />
-       
-            <br>
-       
-            <label for="description">Description: </label>
-            <input id="desField" type="text" name="description" />
-       
-            <br>
-       
-            <label for="start">Start date:</label>
-            <input type="date" id="startField" name="start" value="2022-10-1" min="2022-10-1" max="2025-12-31">
-            <br>
-       
-            <label for="importance">Importance: </label>
-            <input id="ageField" type="number" name="importance" min="0" max="10" step="1" />
-       
-       
-            <input type="submit" value="Add Note" />
-          </form> -->
-
-
-
     
-        </section>
-        <section id="content">
-        </section>
+   
       
 
 
@@ -309,10 +292,12 @@
       
 
       <div class="w-full xl:w-3/5 py-6 overflow-y-hidden">
-        <img class="w-5/6 mx-auto lg:mr-0 slide-in-bottom" src="devices.png">
+        <img class="w-5/6 mx-auto lg:mr-0 slide-in-bottom" src="devices.png" alt="Background phone, computer and tablet image">
       </div>
       
-
+    </section class="mb-3 font-light text-gray-500 dark:text-gray-400">
+    <section id="content">
+    </section>
 
       <!--Footer-->
       <div class="w-full pt-16 pb-6 text-sm text-center md:text-left fade-in">
@@ -322,35 +307,7 @@
     </div>
 
 
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
 </body>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </html>
