@@ -14,7 +14,7 @@ const getNotes = (request, response) => {
   const responseJSON = {
     notes,
   };
-
+  // 200
   return respondJSON(request, response, 200, responseJSON);
 };
 
@@ -24,7 +24,7 @@ const addNote = (request, response, body) => {
   };
 
   // !body.importance || !body.title|| !body.start || !body.yourName|| !body.description
-
+  // 400
   if (!body.importance || !body.name || !body.description || !body.start || !body.yourName) {
     responseJSON.id = 'addMissingParams';
     return respondJSON(request, response, 400, responseJSON);
@@ -43,11 +43,12 @@ const addNote = (request, response, body) => {
   notes[body.name].title = body.title;
   notes[body.name].yourName = body.yourName;
 
+  // 201
   if (status === 201) {
     responseJSON.message = 'Note succesfully created.';
     return respondJSON(request, response, 201, responseJSON);
   }
-
+  // 204
   responseJSON.message = 'No content to create.';
   return respondJSON(request, response, 204, responseJSON);
 };

@@ -20,7 +20,7 @@ const urlStruct = {
   '/getNotes': jsonHandler.getNotes,
   '/devices.png': imageHandler.getImage1,
   '/bg.png': imageHandler.getImage2,
-  notFound: jsonHandler.notFound,
+  notFound: jsonHandler.notFound,  // Handling 404 here
 };
 
 app.get('/', (req, res) => {
