@@ -42,26 +42,18 @@
         const jsonResponse = await response.json();
 
 
-        // if(jsonResponse.notes === {}){
-        //   content.innerHTML += `<p>The response was succesful but there are no notes to get</p>`;
-        // }
-
-
 
         if (jsonResponse.notes) {
-          // console.log(Object.keys(obj));
-          // if (Object.keys(obj).length === 0) {
-          //   content.innerHTML += `<p>The response was succesful but there are no notes to get</p>`;
-          // }
+
           console.log(Object.keys(jsonResponse.notes));
 
           if (Object.keys(jsonResponse.notes).length == 0) {
             content.innerHTML += `<p>The response was succesful but there are no notes to get</p>`;
           }
 
-
+          // displaying the data
           Object.keys(jsonResponse.notes).forEach(key => {
-            //console.log(jsonResponse);
+
             const note = jsonResponse.notes[key];
             `<br>`;
             content.innerHTML += `<h1>${key}</h1>`;
@@ -74,21 +66,16 @@
         }
 
 
-        // if (!jsonResponse.notes) {
-        //   content.innerHTML += `<p>The response was succesful but there are no notes to</p>`;
-        // }
 
         if (obj) {
           content.innerHTML += `<p>Message: ${jsonResponse.message}</p>`;
         }
-        // } else {
-        //   content.innerHTML += `<p>${JSON.stringify(jsonResponse.notes)}</p>`;
-        // }
+
       }
 
     };
 
-
+    // getting the data
     const get = async (noteForm) => {
       const methodSelect = noteForm.querySelector('#methodSelect').value;
       const url = noteForm.querySelector('#urlField').value;
@@ -104,7 +91,7 @@
       handleResponse(response, methodSelect !== 'head', false);
     };
 
-
+    // post handler
     const post = async (nameForm) => {
       const ageField = nameForm.querySelector('#ageField').value;
       const nameMethod = nameForm.getAttribute('method').value;
@@ -127,7 +114,7 @@
       handleResponse(response, true, true);
     };
 
-
+    // intializing the values
     const init = () => {
       const nameForm = document.querySelector('#nameForm');
       const noteForm = document.querySelector('#noteForm');
@@ -151,17 +138,9 @@
   </script>
 
 
-
-
-
-
-
-    <!-- Font Awesome if you need it
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-	-->
 	
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
-	<!--Replace with your tailwind.css once created-->
+
 
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
 
@@ -191,9 +170,9 @@
       color: blueviolet;
       font-size: 20px;
       margin: auto;
-     width: 50%;
-    border: 3px solid blue;
-    padding: 10px;
+      width: 50%;
+      border: 3px solid blue;
+      padding: 10px;
       
     }
 
@@ -267,7 +246,8 @@
 
 
           </form>
-
+          
+          <!-- Here I handle the ehad requeests but the user does not interact with it -->
           <form id="noteForm" action="/getNotes" method="get">
             <select id='urlField' hidden>
               <option value='/getNotes'>/getNotes</option>

@@ -28,7 +28,6 @@ app.get('/', (req, res) => {
 });
 
 const onRequest = (request, response) => {
-  // response.sendFile(__dirname + '/client.html');
 
   const parsedUrl = url.parse(request.url, true);
   const handlerFunction = urlStruct[parsedUrl.pathname];

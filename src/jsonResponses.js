@@ -23,7 +23,6 @@ const addNote = (request, response, body) => {
     message: 'Message: All attributes are required,',
   };
 
-  // !body.importance || !body.title|| !body.start || !body.yourName|| !body.description
   // 400
   if (!body.importance || !body.name || !body.description || !body.start || !body.yourName) {
     responseJSON.id = 'addMissingParams';
@@ -73,76 +72,9 @@ const notFound = (request, response) => {
   respondJSON(request, response, 404, responseJSON);
 };
 
-// 200 - Success
-const success = (request, response) => {
-  const displayObject = {
-    message: 'This is a successful response.',
-  };
-
-  const stringedObject = JSON.stringify(displayObject);
-  return respond(request, response, 200, stringedObject, 'application/json');
-};
-
-// 201 - Internal
-const created = (request, response) => {
-  const displayObject = {
-    message: 'The request has been fulfilled and resulted in a new resource being created.',
-    id: 'created',
-  };
-
-  const stringedObject = JSON.stringify(displayObject);
-  return respond(request, response, 201, stringedObject, 'application/json');
-};
-
-// 204 - Internal
-const noContent = (request, response) => {
-  const displayObject = {
-    message: 'The server has successfully fulfilled the request and that there is no additional content to send in the response payload body..',
-    id: 'noContent',
-  };
-
-  const stringedObject = JSON.stringify(displayObject);
-  return respond(request, response, 204, stringedObject, 'application/json');
-};
-
-// 400 - Bad Request
-const badRequest = (request, response, params) => {
-  if (!params.valid || params.valid !== 'true') {
-    const displayObject = {
-      message: 'Missing valid query parameter set to true.',
-      id: 'badRequest',
-    };
-
-    const stringedObject = JSON.stringify(displayObject);
-    return respond(request, response, 400, stringedObject, 'application/json');
-  }
-
-  const displayObject = {
-    message: 'You have all the valid parameters',
-  };
-
-  const stringedObject = JSON.stringify(displayObject);
-  return respond(request, response, 200, stringedObject, 'application/json');
-};
-
-// 500 - Internal
-const internal = (request, response) => {
-  const displayObject = {
-    message: 'Internal Server Error. Something went wrong',
-    id: 'internalError',
-  };
-
-  const stringedObject = JSON.stringify(displayObject);
-  return respond(request, response, 500, stringedObject, 'application/json');
-};
 
 module.exports = {
   getNotes,
   addNote,
-  created,
-  badRequest,
-  noContent,
-  internal,
-  success,
   notFound,
 };
