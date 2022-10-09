@@ -176,6 +176,19 @@
       
     }
 
+
+    .addUpdateBtn{
+      width: 40px;
+      height: 40px;
+      background-color: #eee;
+      cursor: pointer;
+      }
+    .addUpdateBtn:hover{
+        border: 1px solid #888;
+        background-color: #ddd;
+      }
+
+
 				
 	</style>
 </head>
@@ -214,34 +227,34 @@
             <form id="nameForm" action="/addNote" method="post">
 
             <div>
-                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title:</label>
                 <input type="text" id="titleField" name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
 
             <div>
-              <label for="yourName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your name</label>
+              <label for="yourName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 py-1">Your name:</label>
               <input type="text" id="nameField" name="yourName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
 
 
             <div>
-              <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Description</label>
+              <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 py-1">Description:</label>
               <input type="text" id="desField" name="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
 
 
             <div>
-              <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Start Date</label>
+              <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 py-1">Start Date:</label>
               <input type="date" id="startField" name="start" value="2022-10-1" min="2022-10-1" max="2025-12-31" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
 
 
             <div>
-              <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Importance</label>
+              <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 py-1">Importance:</label>
               <input type="number" id="ageField" name="importance" min="0" max="10" step="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
             <br>
-            <input type="submit" value="Add Note" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"/>
+            <input type="submit" value="Add/Update Note" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" id="addUpdateBtn" title="Add a note or Update an existing one based on the Title"/>
 
 
 
