@@ -1,4 +1,4 @@
-const fs = require('fs'); 
+const fs = require('fs');
 
 const devicesImage = fs.readFileSync(`${__dirname}/../client/devices.png`);
 const bgImage = fs.readFileSync(`${__dirname}/../client/bg.png`);

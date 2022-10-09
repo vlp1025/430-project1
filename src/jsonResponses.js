@@ -72,9 +72,19 @@ const notFound = (request, response) => {
   respondJSON(request, response, 404, responseJSON);
 };
 
+// 200 - Success
+const success = (request, response) => {
+  const displayObject = {
+    message: 'This is a successful response.',
+  };
+
+  const stringedObject = JSON.stringify(displayObject);
+  return respond(request, response, 200, stringedObject, 'application/json');
+};
 
 module.exports = {
   getNotes,
   addNote,
+  success,
   notFound,
 };
