@@ -15,6 +15,5 @@ const getImage2 = (request, response) => {
   response.end();
 };
 
-
 module.exports.getImage1 = getImage1;
 module.exports.getImage2 = getImage2;
